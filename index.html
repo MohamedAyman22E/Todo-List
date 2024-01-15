@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+
+    <title>Todo List</title>
+  </head>
+  <body>
+    <div class="container">
+      <div id="newTask">
+        <input type="text" placeholder="Task to be done" required />
+        <button id="push">Add</button>
+      </div>
+      <div id="tasks"></div>
+    </div>
+    <h2 class="end">created by mohamed ayman</h2>
+
+    <script>
+      let push = document.querySelector("#push");
+      push.onclick = function () {
+        if (document.querySelector("#newTask input").value.length == 0) {
+          alert("Please Enter Your Task ");
+        } else {
+          document.querySelector("#tasks").innerHTML += `
+            <div class="task">
+                <span class="taskName"> ${
+                  document.querySelector("#newTask input").value
+                }</span>
+                <button class="delete"><i class='bx bxs-trash'></i> </button>
+            </div>
+            `;
+          document.querySelector("#newTask input").value = "";
+        }
+        var allDelete = document.querySelectorAll(".task button");
+        for (let i = 0; i < allDelete.length; i++) {
+          allDelete[i].onclick = function () {
+            allDelete[i].parentNode.remove();
+          };
+        }
+      };
+    </script>
+  </body>
+</html>
